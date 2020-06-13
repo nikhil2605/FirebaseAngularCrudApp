@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Angular8Firebase"
+    }
+  },
+  "defaultProject": "Angular8Firebase",
+  "cli": {
+    "analytics": false
+  }
 }
