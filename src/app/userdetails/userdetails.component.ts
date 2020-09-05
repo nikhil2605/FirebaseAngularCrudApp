@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './user.service';
-import { FormsModule } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-userdetails',
+  templateUrl: './userdetails.component.html',
+  styleUrls: ['./userdetails.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'Angular - Firebase Demo App';
+export class UserdetailsComponent implements OnInit {
 
   user;
 
@@ -66,5 +64,5 @@ export class AppComponent implements OnInit {
     this.designation = ""
     this.isEdit = false;
   }
-}
 
+}

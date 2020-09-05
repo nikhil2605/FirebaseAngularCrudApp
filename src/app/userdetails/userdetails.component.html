@@ -1,0 +1,31 @@
+<div>
+  <form #userForm="ngForm">
+
+    <div class="form-group">
+      <input type="hidden" class="form-control" placeholder="Enter id" id="id" name="id" [(ngModel)]="id" />
+    </div>
+    <div class="form-group">
+      <label for="username">Username : </label>
+      <input type="text" class="form-control" placeholder="Enter Content..." id="username" name="username"
+        [(ngModel)]="username" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email : </label>
+      <input type="email" class="form-control" placeholder="Enter Content..." id="email" name="email"
+        [(ngModel)]="email" />
+    </div>
+    <div class="form-group">
+      <label for="designation">Designation : </label>
+      <input type="text" class="form-control" placeholder="Enter Content..." id="designation" name="designation"
+        [(ngModel)]="designation" />
+    </div>
+    <br />
+    <div class="btn-group">
+      <button *ngIf="!isEdit" type="submit" class="btn btn-success" (click)="saveUser(userForm)">Submit</button>
+      <button *ngIf="isEdit" type="submit" class="btn btn-success" (click)="updateUser(userForm)">Update</button>
+      &nbsp;&nbsp;
+      <button type="submit" class="btn btn-success" (click)="Clear()">Clear</button>
+    </div>
+
+  </form>
+</div>

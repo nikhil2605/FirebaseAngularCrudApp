@@ -1,44 +1,36 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(public db: AngularFireDatabase, public http: HttpClient) { }
 
-  user;
-  users;
+  constructor(public fireService: AngularFirestore) { }
 
-  userObj = {
-    username: "",
-    email: "",
-    designation: "",
-    id: ""
-  }
-
-  baseUrl = "https://angular8firebase-b03a1.firebaseio.com/users.json";
+  userEdited = new Subject();
 
 
   getLatestUsers() {
-    return this.db.list('users').valueChanges();
+    return this.fireService.collection('User').snapshotChanges();
   }
 
-  createUser(user): Observable<any> {
-    return this.http.post(this.baseUrl, user);
+  createUser(Record) {
+    return this.fireService.collection('User').add(Record);
   }
 
-  deleteUser(user): Observable<any> {
-    return this.http.delete(this.baseUrl, user);
+  deleteUser(id) {
+    return this.fireService.doc('User/' + id).delete();
   }
 
-  updateUser(user): Observable<any> {
-    return this.http.put(this.baseUrl + user.id, user);
+  updateUser(id, Record) {
+    return this.fireService.doc('User/' + id).update(Record);
   }
 
-
+  editUser(user) {
+    this.userEdited.next(user);
+  }
 
 }
